@@ -1,7 +1,10 @@
-package repo;
+package main.repo;
 
-import model.Message;
+import main.models.Message;
 import org.springframework.data.repository.CrudRepository;
 
+import java.util.List;
+
 public interface MessageRepository extends CrudRepository<Message, Long> {
+    List<Message> findByTextIsContaining(String filter);
 }

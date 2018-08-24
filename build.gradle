@@ -27,20 +27,20 @@ repositories {
 }
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-starter-web")
 
     // JPA Data (We are going to use Repositories, Entities, Hibernate, etc...)
     compile 'org.springframework.boot:spring-boot-starter-data-jpa'
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-mustache:2.0.4.RELEASE")
+    compile("org.springframework.boot:spring-boot-devtools")
 
-    runtime 'org.postgresql:postgresql:42.2.2'
+    // database
+    compile 'org.postgresql:postgresql:42.2.2'
 
+    // security
+    compile("org.springframework.boot:spring-boot-starter-security:2.0.4.RELEASE")
+
+    // comfort plugin
     compileOnly "org.projectlombok:lombok:1.16.16"
-
-    // Use MySQL Connector-J
-    compile 'mysql:mysql-connector-java'
-
-// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-mustache
-    compile group: 'org.springframework.boot', name: 'spring-boot-starter-mustache', version: '2.0.4.RELEASE'
-
-    testCompile('org.springframework.boot:spring-boot-starter-test')
+//    testCompile('org.springframework.boot:spring-boot-starter-test')
 }

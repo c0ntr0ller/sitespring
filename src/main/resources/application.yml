@@ -1,15 +1,27 @@
 spring:
     jpa:
         hibernate:
-          ddl-auto: "create"
+          ddl-auto: update
         properties:
             hibernate:
+                temp:
+                  use_jdbc_metadata_defaults: false
                 show_sql: true
         generate-ddl: true
-#                jdbc:
-#                    batch_size:1000
+        database: postgresql
     datasource:
-#        driver: org.postgresql.Driver
-        url:  jdbc:postgresql://localhost/sitespring
+#        driver-class-name: org.postgresql.Driver
+        url: jdbc:postgresql://localhost/sitespring
         username: admin
         password: q1w2e3
+    mustache:
+      expose-request-attributes: true
+server:
+  port: 8081
+
+#hibernate:
+#  jdbc:
+#    lob:
+#      non_contextual_creation: true
+#                jdbc:
+#                    batch_size:1000
