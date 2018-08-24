@@ -1,0 +1,15 @@
+spring:
+    jpa:
+        hibernate:
+          ddl-auto: "create"
+        properties:
+            hibernate:
+                show_sql: true
+        generate-ddl: true
+#                jdbc:
+#                    batch_size:1000
+    datasource:
+#        driver: org.postgresql.Driver
+        url:  jdbc:postgresql://localhost/sitespring
+        username: admin
+        password: q1w2e3
