@@ -1,6 +1,6 @@
 package main.repo;
 
-import main.models.Message;
+import main.domain.Message;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

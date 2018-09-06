@@ -14,8 +14,10 @@ spring:
         url: jdbc:postgresql://localhost/sitespring
         username: admin
         password: q1w2e3
-    mustache:
-      expose-request-attributes: true
+#    mustache:
+    freemarker:
+        expose-request-attributes: true
+
 server:
   port: 8081
 

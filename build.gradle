@@ -31,7 +31,11 @@ dependencies {
     // JPA Data (We are going to use Repositories, Entities, Hibernate, etc...)
     compile 'org.springframework.boot:spring-boot-starter-data-jpa'
     compile("org.springframework.boot:spring-boot-starter-web")
-    compile("org.springframework.boot:spring-boot-starter-mustache:2.0.4.RELEASE")
+
+    // webshablon
+//    compile("org.springframework.boot:spring-boot-starter-mustache:2.0.4.RELEASE")
+    compile("org.springframework.boot:spring-boot-starter-freemarker:2.0.4.RELEASE")
+
     compile("org.springframework.boot:spring-boot-devtools")
 
     // database

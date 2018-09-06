@@ -1,7 +1,7 @@
 package main.controller;
 
-import main.models.Role;
-import main.models.User;
+import main.domain.Role;
+import main.domain.User;
 import main.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
