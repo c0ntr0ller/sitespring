@@ -12,22 +12,23 @@ import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
-
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
-    DataSource dataSource;
+    private DataSource dataSource;
 
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .authorizeRequests()
-                .antMatchers("/").permitAll()
-                .anyRequest().authenticated()
-            .and()
-                .formLogin()
-                .loginPage("/login").permitAll()
-            .and()
-                .logout()
-                .permitAll();
+                .authorizeRequests()
+                    .antMatchers("/", "/registration").permitAll()
+                    .anyRequest().authenticated()
+                .and()
+                    .formLogin()
+                    .loginPage("/login")
+                    .permitAll()
+                .and()
+                    .logout()
+                    .permitAll();
     }
 
     @Override
@@ -35,7 +36,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         auth.jdbcAuthentication()
                 .dataSource(dataSource)
                 .passwordEncoder(NoOpPasswordEncoder.getInstance())
-                .usersByUsernameQuery("select username, password, active from usr where username = ?")
-                .authoritiesByUsernameQuery("select u.username, ur.user_role from usr u join user_role ur on u.id = ur.user_id where u.username = ?");
+                .usersByUsernameQuery("select username, password, active from usr where username=?")
+                .authoritiesByUsernameQuery("select u.username, ur.roles from usr u inner join userroles ur on u.id = ur.user_id where u.username=?");
     }
 }

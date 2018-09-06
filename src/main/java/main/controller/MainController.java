@@ -50,7 +50,7 @@ public class MainController {
         if(filter == null || filter.isEmpty()){
             messages = messageRepository.findAll();
         }else {
-            messages = messageRepository.findByTextIsContaining(filter);
+            messages = messageRepository.findByTextIsContainingOrTagIsContaining(filter, filter);
         }
         model.put("messages", messages);
 

@@ -1,5 +1,5 @@
 package main.models;
 
 public enum Role {
-    USER;
+    USER, ADMIN, GUEST;
 }
