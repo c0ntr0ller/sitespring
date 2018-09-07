@@ -12,7 +12,6 @@ import java.util.Set;
 @Table(name = "usr")
 public class User implements UserDetails{
     @Id
-    @Getter
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long Id;
     private String username;
@@ -25,6 +24,10 @@ public class User implements UserDetails{
     private Set<Role> roles;
 
     public User() {
+    }
+
+    public Long getId() {
+        return Id;
     }
 
     public String getUsername() {
