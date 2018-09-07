@@ -3,7 +3,7 @@
 <@common.page>
     <p>Add new user</p>
     <div id="message">
-        {$message}
+        {$message?ifExists}
     </div>
     <div id="registration">
         <@l.login "/registration" />

@@ -30,6 +30,10 @@ public class User implements UserDetails{
         return Id;
     }
 
+    public void setId(Long id) {
+        Id = id;
+    }
+
     public String getUsername() {
         return username;
     }

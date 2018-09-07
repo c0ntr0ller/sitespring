@@ -27,3 +27,6 @@ server:
 #      non_contextual_creation: true
 #                jdbc:
 #                    batch_size:1000
+
+upload:
+    path: /home/bek/Java/bek/springboot/upload
