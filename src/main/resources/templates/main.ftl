@@ -20,15 +20,16 @@
     <input type="text" name="filter" value="${filter?ifExists}">
     <button type="submit">Найти</button>
 </form>
+<div class="container">
     <#list messages as message>
-        <div class="message">
-            <div class="message_id">${message.id}</div>
-            <div class="message_text">
+        <div class="message row">
+            <div class="message_id col-1">${message.id}</div>
+            <div class="message_text col-4">
                 <span>${message.text!}</span>
             </div>
-            <div class="message_tag">${message.tag!}</div>
-            <div class="message_author">${message.authorName!}</div>
-            <div class="message_image">
+            <div class="message_tag col-2">${message.tag!}</div>
+            <div class="message_author col-1">${message.authorName!}</div>
+            <div class="message_image col-3">
                 <#if message.filename??>
                     <img src="/img/${message.filename}">
                 </#if>
@@ -37,4 +38,5 @@
     <#else>
         No message
     </#list>
+</div>
 </@c.page>
