@@ -1,0 +1,10 @@
+body{
+    color: #113;
+}
+.message_id{
+    font-weight: bold;
+}
+
+.message_author{
+    font-style: italic;
+}
