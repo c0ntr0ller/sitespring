@@ -22,8 +22,13 @@
 
         </ul>
 
-        <div class="navbar-text mr-3">${name}</div>
-        <#if sessionStarted>
+        <div class="navbar-text mr-3">
+            <#if user??>
+            <a class="nav-link" href="/user/profile">${name}</a>
+            <#else> ${name}
+            </#if>
+        </div>
+        <#if user??>
         <@l.logout />
         </#if>
     </div>
