@@ -41,6 +41,8 @@ dependencies {
     // database
     compile 'org.postgresql:postgresql:42.2.2'
 
+    compile 'org.flywaydb:flyway-core:5.1.4'
+
     // security
     compile("org.springframework.boot:spring-boot-starter-security:2.0.4.RELEASE")
 
