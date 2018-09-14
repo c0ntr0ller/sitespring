@@ -17,9 +17,29 @@ spring:
 #    mustache:
     freemarker:
         expose-request-attributes: true
+    mail:
+        host: smtp.yandex.ru
+        username: c0ntr0ller@yandex.ru
+        password: Jupiter5
+        protocol: smtps
+        port: 465
 
+
+# address and port of web-server
 server:
   port: 8081
+
+# folder for store images
+upload:
+    path: /home/bek/Java/bek/springboot/upload
+
+# path for activation service
+activation:
+    address: http://localhost
+
+#    set true for test email sending
+mail:
+    debug: false
 
 #hibernate:
 #  jdbc:
@@ -27,6 +47,3 @@ server:
 #      non_contextual_creation: true
 #                jdbc:
 #                    batch_size:1000
-
-upload:
-    path: /home/bek/Java/bek/springboot/upload

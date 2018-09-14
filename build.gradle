@@ -35,7 +35,7 @@ dependencies {
     // webshablon
 //    compile("org.springframework.boot:spring-boot-starter-mustache:2.0.4.RELEASE")
     compile("org.springframework.boot:spring-boot-starter-freemarker:2.0.4.RELEASE")
-
+    compile("org.springframework.boot:spring-boot-starter-mail:2.0.4.RELEASE")
     compile("org.springframework.boot:spring-boot-devtools")
 
     // database
