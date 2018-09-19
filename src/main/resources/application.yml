@@ -23,7 +23,11 @@ spring:
         password: Jupiter5
         protocol: smtps
         port: 465
-
+    session:
+      store-type: jdbc # Session store type.
+      jdbc:
+        initialize-schema: always
+        table-name: SPRING_SESSION
 
 # address and port of web-server
 server:
@@ -41,6 +45,8 @@ activation:
 mail:
     debug: false
 
+recaptcha:
+  secret: 6LfPCXEUAAAAABR4PpX1YdzNG_ZLG12sm0dRitBw
 #hibernate:
 #  jdbc:
 #    lob:

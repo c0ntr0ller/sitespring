@@ -75,7 +75,6 @@ public class UserService implements UserDetailsService{
         User user = userRepository.findByActivationCode(code);
         if(user != null){
             user.setActive(true);
-            user.setPassword2(user.getPassword());
             user.setActivationCode(null);
             userRepository.save(user);
             return true;

@@ -55,7 +55,7 @@
 <div><b>Список сообщений</b></div>
 <div class="card-columns">
     <#list messages as message>
-        <div class="card my-3">
+        <div class="card my-3 border border-info rounded">
             <p class="card-header text-muted">${message.id!}</p>
             <div class="card-body m-2">
                 <p class="card-text">${message.text!}</p>

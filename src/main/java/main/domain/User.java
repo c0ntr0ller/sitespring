@@ -23,10 +23,6 @@ public class User implements UserDetails{
     @NotEmpty(message = "Password cannot be empty")
     private String password;
 
-    @NotEmpty(message = "Password confirmation cannot be empty")
-    @Transient
-    private String password2;
-
     private boolean active;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
@@ -127,11 +123,4 @@ public class User implements UserDetails{
         this.activationCode = activationCode;
     }
 
-    public String getPassword2() {
-        return password2;
-    }
-
-    public void setPassword2(String password2) {
-        this.password2 = password2;
-    }
 }
