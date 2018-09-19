@@ -34,7 +34,12 @@ public class UserService implements UserDetailsService{
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findUserByUsername(username);
+        User user = userRepository.findUserByUsername(username);
+
+        if(user == null){
+            throw new UsernameNotFoundException("User not found!");
+        }
+        return user;
     }
 
     public boolean addUser(User user){
@@ -70,6 +75,7 @@ public class UserService implements UserDetailsService{
         User user = userRepository.findByActivationCode(code);
         if(user != null){
             user.setActive(true);
+            user.setPassword2(user.getPassword());
             user.setActivationCode(null);
             userRepository.save(user);
             return true;
