@@ -3,6 +3,7 @@ package main.controller;
 import main.domain.Message;
 import main.domain.User;
 import main.repo.MessageRepository;
+import main.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -27,8 +28,10 @@ public class MainController {
     @Autowired
     private MessageRepository messageRepository;
 
-    @Value("${upload.path}")
-    private String uploadPath;
+    @Autowired
+    private FileService fileService;
+
+
 
     @GetMapping("/")
     public String greeting(Model model){
@@ -66,18 +69,7 @@ public class MainController {
             model.addAttribute("message", message);
 
         }else {
-            if (file != null && !file.getOriginalFilename().isEmpty()) {
-                File uploadDir = new File(uploadPath);
-
-                if (!uploadDir.exists()) uploadDir.mkdir();
-
-                String uuidFile = UUID.randomUUID().toString();
-                String resultFileName = uuidFile + "." + file.getOriginalFilename();
-
-                message.setFilename(resultFileName);
-
-                file.transferTo(new File(uploadPath + File.separatorChar + resultFileName));
-            }
+            message.setFilename(fileService.saveFile(file));
 
             model.addAttribute("message", null);
 
