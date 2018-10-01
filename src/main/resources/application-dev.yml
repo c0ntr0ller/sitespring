@@ -12,8 +12,8 @@ spring:
     datasource:
 #        driver-class-name: org.postgresql.Driver
         url: jdbc:postgresql://localhost/sitespring
-        username: postgres
-        password: masterkey
+        username: admin
+        password: q1w2e3
 #    mustache:
     freemarker:
         expose-request-attributes: true
@@ -31,15 +31,15 @@ spring:
 
 # address and port of web-server
 server:
-  port: 8088
+  port: 8081
 
 # folder for store images
 upload:
-    path: /home/bek/sitespring/upload
+    path: /home/bek/Java/bek/springboot/upload
 
 #    set true for test email sending
 mail:
-    debug: false
+    debug: true
 
 recaptcha:
   secret: 6LfPCXEUAAAAABR4PpX1YdzNG_ZLG12sm0dRitBw
@@ -50,4 +50,4 @@ recaptcha:
 #                jdbc:
 #                    batch_size:1000
 
-hostname: 172.16.0.203
+hostname: http://localhost

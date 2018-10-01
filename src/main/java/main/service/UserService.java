@@ -26,8 +26,8 @@ public class UserService implements UserDetailsService{
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Value("${activation.address:\"http://localhost\"}")
-    private String serverAddress;
+    @Value("${hostname:\"http://localhost\"}")
+    private String hostname;
 
     @Value("${server.port:8081}")
     private String serverPort;
@@ -64,7 +64,7 @@ public class UserService implements UserDetailsService{
         if(!StringUtils.isEmpty(user.getEmail())) {
             String message = String.format("Hello, %s!\n You activation link is %s:%s/activate/%s",
                     user.getUsername(),
-                    serverAddress,
+                    hostname,
                     serverPort,
                     user.getActivationCode());
             mailSender.sendEmail(user.getEmail(), "Activation code", message);
