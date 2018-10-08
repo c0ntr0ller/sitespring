@@ -5,20 +5,19 @@ import main.domain.User;
 import main.repo.MessageRepository;
 import main.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
-import java.io.File;
 import java.io.IOException;
-import java.util.UUID;
+import java.util.Set;
 
 import static main.controller.ControllerUtil.getErrorsMap;
 
@@ -30,8 +29,6 @@ public class MainController {
 
     @Autowired
     private FileService fileService;
-
-
 
     @GetMapping("/")
     public String greeting(Model model){
@@ -81,4 +78,16 @@ public class MainController {
         return "main";
     }
 
+    @GetMapping("/user-messages/{user}")
+    public String getUserMessages(
+            @AuthenticationPrincipal User currentUser,
+            @PathVariable User user,
+            Model model
+            ){
+        Set<Message> messages = user.getMessages();
+        model.addAttribute("messages", messages);
+        model.addAttribute("isCurrentUser", currentUser.equals(user));
+
+        return "usermessages";
+    }
 }

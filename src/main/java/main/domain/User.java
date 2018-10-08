@@ -1,6 +1,5 @@
 package main.domain;
 
-import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -34,6 +33,9 @@ public class User implements UserDetails{
     @NotEmpty(message = "E-mail cannot be empty")
     private String email;
     private String activationCode;
+
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private Set<Message> messages;
 
     public User() {
     }
@@ -123,4 +125,26 @@ public class User implements UserDetails{
         this.activationCode = activationCode;
     }
 
+    public Set<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(Set<Message> messages) {
+        this.messages = messages;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        return Id.equals(user.Id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Id.hashCode();
+    }
 }

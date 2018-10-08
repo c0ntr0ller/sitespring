@@ -1,6 +1,6 @@
-<#import "parts/common.ftl" as c>
+<#import "parts/common.ftl" as common>
 
-<@c.page>
+<@common.page>
 <h1>Users list</h1>
 <table>
     <thead>
@@ -26,4 +26,4 @@
     </#list>
     </tbody>
 </table>
-</@c.page>
+</@common.page>

@@ -1,6 +1,6 @@
-<#import "parts/common.ftl" as c>
+<#import "parts/common.ftl" as common>
 
-<@c.page>
+<@common.page>
 <h1>User edit</h1>
 <form action="/user" method="post">
     <input type="hidden" name="_csrf" value="${_csrf.token}" />
@@ -14,4 +14,4 @@
     </#list>
     <button type="submit">Save</button>
 </form>
-</@c.page>
+</@common.page>
