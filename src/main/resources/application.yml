@@ -12,7 +12,7 @@ spring:
     datasource:
 #        driver-class-name: org.postgresql.Driver
         url: jdbc:postgresql://localhost/sitespring
-        username: pqadmin
+        username: admin
         password: q1w2e3
 #    mustache:
     freemarker:
@@ -35,7 +35,7 @@ server:
 
 # folder for store images
 upload:
-    path: upload
+    path: /home/bek/Java/sitespring/upload
 
 #    set true for test email sending
 mail:

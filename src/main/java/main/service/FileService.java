@@ -23,7 +23,7 @@ public class FileService {
             String uuidFile = UUID.randomUUID().toString();
             resultFileName = uuidFile + "." + file.getOriginalFilename();
 
-            file.transferTo(new File(uploadPath + File.separatorChar + resultFileName));
+            file.transferTo(new File(uploadDir.getAbsolutePath() + File.separatorChar + resultFileName));
         }
         return resultFileName;
     }

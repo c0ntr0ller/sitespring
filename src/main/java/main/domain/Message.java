@@ -75,4 +75,8 @@ public class Message {
     public void setAuthor(User author) {
         this.author = author;
     }
+
+    public User getAuthor() {
+        return author;
+    }
 }

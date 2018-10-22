@@ -40,7 +40,7 @@ public class MainController {
         Iterable<Message> messages;
 
         if(filter == null || filter.isEmpty()){
-            messages = messageRepository.findAll();
+            messages = messageRepository.findAllByOrderByIdDesc();
         }else {
             messages = messageRepository.findByTextIsContainingOrTagIsContaining(filter, filter);
         }
@@ -51,15 +51,15 @@ public class MainController {
         return "main";
     }
 
-    @PostMapping("/main")
+    @PostMapping({"/main", "/user-messages/{user}"})
     public String messageAdd(
-            @AuthenticationPrincipal User user,
+            @AuthenticationPrincipal User currentUser,
             @Valid Message message,
             BindingResult bindingResult,
             Model model,
             @RequestParam("file") MultipartFile file) throws IOException {
 
-        message.setAuthor(user);
+        message.setAuthor(currentUser);
         if(bindingResult.hasErrors()){
 
             model.mergeAttributes(getErrorsMap(bindingResult));
@@ -72,7 +72,7 @@ public class MainController {
 
             messageRepository.save(message);
         }
-        Iterable<Message> messages = messageRepository.findAll();
+        Iterable<Message> messages = messageRepository.findAllByOrderByIdDesc();
         model.addAttribute("messages", messages);
 
         return "main";
@@ -82,12 +82,13 @@ public class MainController {
     public String getUserMessages(
             @AuthenticationPrincipal User currentUser,
             @PathVariable User user,
-            Model model
+            Model model,
+            @RequestParam(required = false) Message message
             ){
         Set<Message> messages = user.getMessages();
         model.addAttribute("messages", messages);
         model.addAttribute("isCurrentUser", currentUser.equals(user));
-
+        model.addAttribute("message", message);
         return "usermessages";
     }
 }
