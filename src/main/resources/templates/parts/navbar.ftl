@@ -32,7 +32,7 @@
         <div class="navbar-text mr-3">
             <#if user??>
                 <a class="nav-link" href="/user/profile">${name}</a>
-            <#else> ${name}
+            <#else> Please, log in
             </#if>
         </div>
         <#if user??>
