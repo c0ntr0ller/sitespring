@@ -1,0 +1,53 @@
+spring:
+    jpa:
+        hibernate:
+          ddl-auto: validate
+        properties:
+            hibernate:
+                temp:
+                  use_jdbc_metadata_defaults: false
+                show_sql: false
+        generate-ddl: false
+        database: postgresql
+    datasource:
+#        driver-class-name: org.postgresql.Driver
+        url: jdbc:postgresql://localhost/sitespringtest
+        username: admin
+        password: q1w2e3
+#    mustache:
+    freemarker:
+        expose-request-attributes: true
+    mail:
+        host: smtp.yandex.ru
+        username: c0ntr0ller@yandex.ru
+        password: Jupiter5
+        protocol: smtps
+        port: 465
+    session:
+      store-type: jdbc # Session store type.
+      jdbc:
+        initialize-schema: always
+        table-name: SPRING_SESSION
+
+# address and port of web-server
+server:
+  port: 8081
+
+# folder for store images
+upload:
+    path: /home/bek/Java/bek/springboot/upload
+
+#    set true for test email sending
+mail:
+    debug: true
+
+recaptcha:
+  secret: 6LfPCXEUAAAAABR4PpX1YdzNG_ZLG12sm0dRitBw
+#hibernate:
+#  jdbc:
+#    lob:
+#      non_contextual_creation: true
+#                jdbc:
+#                    batch_size:1000
+
+hostname: http://localhost

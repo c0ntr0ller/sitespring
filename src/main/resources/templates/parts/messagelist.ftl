@@ -1,9 +1,9 @@
 <#include "security.ftl">
 
 <div><b>Список сообщений</b></div>
-<div class="row">
+<div class="row" id="message-list">
     <#list messages as message>
-        <div class="col-sm-4 py-2">
+        <div class="col-sm-4 py-2" data-id="${message.id}">
             <div class="card h-100 my-3 border border-info rounded">
                 <p class="card-header text-muted">
                     <#if currentUserId == message.author.id>
@@ -18,7 +18,7 @@
                 </div>
                 <#if message.filename??>
                 <div class="card-img-bottom m-2">
-                    <img src="/img/${message.filename}">
+                    <img src="/img/${message.filename}" />
                 </div>
                 </#if>
                 <p class="card-footer text-muted">
