@@ -13,8 +13,8 @@
                     </#if>
                 </p>
                 <div class="card-body m-2">
-                    <p class="card-text">${message.text!}</p>
-                    <p class="card-text">#${message.tag!}</p>
+                    <p class="card-text text">${message.text!}</p>
+                    <p class="card-text tag">#${message.tag!}</p>
                 </div>
                 <#if message.filename??>
                 <div class="card-img-bottom m-2">

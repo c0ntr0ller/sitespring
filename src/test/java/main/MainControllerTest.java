@@ -1,23 +1,18 @@
 package main;
 
 import main.controller.MainController;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.test.context.support.WithUserDetails;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilder;
-import org.springframework.test.web.servlet.request.MockMultipartHttpServletRequestBuilder;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.security.test.web.servlet.response.SecurityMockMvcResultMatchers.authenticated;
@@ -77,8 +72,8 @@ public class MainControllerTest {
                 .andDo(print())
                 .andExpect(authenticated())
                 .andExpect(xpath("//div[@id='message-list']/div").nodeCount(4))
-                .andExpect(xpath("//div[@id='message-list']/div[@data-id=10]").exists());
-//                .andExpect(xpath("//div[@id='message-list']/div[@data-id=10]/div/p[1]").string("test text"))
-//                .andExpect(xpath("//div[@id='message-list']/div[@data-id=10]/div/p[2]").string("#testtag"));
+                .andExpect(xpath("//div[@id='message-list']/div[@data-id=10]").exists())
+                .andExpect(xpath("//div[@id='message-list']/div[@data-id=10]/div//p[@class='card-text text']").string("test text"))
+                .andExpect(xpath("//div[@id='message-list']/div[@data-id=10]/div//p[@class='card-text tag']").string("#testtag"));
     }
 }
