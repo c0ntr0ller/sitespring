@@ -1,8 +1,12 @@
 <#include "security.ftl">
+<#import "pager.ftl" as p>
 
 <div><b>Список сообщений</b></div>
+
+<@p.pager url page />
+
 <div class="row" id="message-list">
-    <#list messages as message>
+    <#list page.content as message>
         <div class="col-sm-4 py-2" data-id="${message.id}">
             <div class="card h-100 my-3 border border-info rounded">
                 <p class="card-header text-muted">
@@ -30,3 +34,5 @@
         No messages
     </#list>
 </div>
+
+<@p.pager url page />

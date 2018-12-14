@@ -1,13 +1,14 @@
 package main.repo;
 
 import main.domain.Message;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.repository.CrudRepository;
-
-import java.util.List;
 
 public interface MessageRepository extends JpaRepository<Message, Long> {
-    List<Message> findByTextIsContainingOrTagIsContaining(String textFilter, String tagFilter);
+    Page<Message> findByTextIsContainingOrTagIsContaining(String textFilter, String tagFilter, Pageable pageable);
 
-    List<Message> findAllByOrderByIdDesc();
+    Page<Message> findAllByOrderByIdDesc(Pageable pageable);
+
+    Page<Message> findAll(org.springframework.data.domain.Pageable pageable);
 }

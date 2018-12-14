@@ -5,6 +5,10 @@ import main.domain.User;
 import main.repo.MessageRepository;
 import main.service.FileService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,16 +40,19 @@ public class MainController {
     }
 
     @GetMapping("/main")
-    public String main(@RequestParam(name = "filter", required = false) String filter, Model model){
-        Iterable<Message> messages;
+    public String main(@RequestParam(name = "filter", required = false) String filter,
+                       Model model,
+                       @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable){
+        Page<Message> page;
 
         if(filter == null || filter.isEmpty()){
-            messages = messageRepository.findAllByOrderByIdDesc();
+            page = messageRepository.findAllByOrderByIdDesc(pageable);
         }else {
-            messages = messageRepository.findByTextIsContainingOrTagIsContaining(filter, filter);
+            page = messageRepository.findByTextIsContainingOrTagIsContaining(filter, filter, pageable);
         }
 
-        model.addAttribute("messages", messages);
+        model.addAttribute("page", page);
+        model.addAttribute("url", "/main");
         model.addAttribute("filter", filter);
 
         return "main";
@@ -57,7 +64,8 @@ public class MainController {
             @Valid Message message,
             BindingResult bindingResult,
             Model model,
-            @RequestParam("file") MultipartFile file) throws IOException {
+            @RequestParam("file") MultipartFile file,
+            @PageableDefault(sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable) throws IOException {
 
         message.setAuthor(currentUser);
         if(bindingResult.hasErrors()){
@@ -72,8 +80,9 @@ public class MainController {
 
             messageRepository.save(message);
         }
-        Iterable<Message> messages = messageRepository.findAllByOrderByIdDesc();
-        model.addAttribute("messages", messages);
+        Page<Message> page = messageRepository.findAllByOrderByIdDesc(pageable);
+        model.addAttribute("page", page);
+        model.addAttribute("url", "/main");
 
         return "main";
     }
