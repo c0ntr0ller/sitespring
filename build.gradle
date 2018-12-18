@@ -25,6 +25,7 @@ sourceCompatibility = 1.8
 repositories {
     mavenCentral()
 }
+
 dependencies {
 
     // JPA Data (We are going to use Repositories, Entities, Hibernate, etc...)
@@ -51,6 +52,7 @@ dependencies {
 
     // comfort plugin
     compileOnly "org.projectlombok:lombok:1.16.16"
+
     testCompile('org.springframework.boot:spring-boot-starter-test')
     // https://mvnrepository.com/artifact/org.springframework.security/spring-security-test
     testCompile('org.springframework.security:spring-security-test')

@@ -42,15 +42,15 @@ public class LoginTest {
                 .andExpect(redirectedUrl("http://localhost/login"));
     }
 
-    @Test
-    @Sql(value = {"/create-user-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
-    @Sql(value = {"/create-user-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
-    public void loginTest() throws Exception{
-        this.mockMvc.perform(formLogin().user("admin").password("1"))
-                .andDo(print())
-                .andExpect(status().is3xxRedirection())
-                .andExpect(redirectedUrl("/"));
-    }
+//    @Test
+//    @Sql(value = {"/create-user-before.sql"}, executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD)
+//    @Sql(value = {"/create-user-after.sql"}, executionPhase = Sql.ExecutionPhase.AFTER_TEST_METHOD)
+//    public void loginTest() throws Exception{
+//        this.mockMvc.perform(formLogin().user("admin").password("1"))
+//                .andDo(print())
+//                .andExpect(status().is3xxRedirection())
+//                .andExpect(redirectedUrl("/"));
+//    }
 
     @Test
     public void badCredentials() throws Exception{
